@@ -5,6 +5,8 @@ import {
     updateEmployee
 } from "../services/employeeService";
 
+import "./EditEmployee.css";
+
 function EditEmployee() {
 
     const { id } = useParams();
@@ -22,15 +24,22 @@ function EditEmployee() {
     }, []);
 
     const loadEmployee = async () => {
+
         try {
+
             const response = await getEmployeeById(id);
+
             setEmployee(response.data);
+
         } catch (error) {
+
             console.error(error);
+
         }
     };
 
     const handleChange = (e) => {
+
         setEmployee({
             ...employee,
             [e.target.name]: e.target.value
@@ -38,6 +47,7 @@ function EditEmployee() {
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         try {
@@ -57,53 +67,130 @@ function EditEmployee() {
     };
 
     return (
-        <div style={{ padding: "20px" }}>
+        <div className="edit-employee-page">
 
-            <h2>Edit Employee</h2>
+            <div className="edit-employee-card">
 
-            <form onSubmit={handleSubmit}>
+                {/* Header */}
 
-                <input
-                    type="text"
-                    name="name"
-                    value={employee.name}
-                    onChange={handleChange}
-                />
+                <div className="edit-employee-header">
 
-                <br /><br />
+                    <div>
 
-                <input
-                    type="email"
-                    name="email"
-                    value={employee.email}
-                    onChange={handleChange}
-                />
+                        <h1>Edit Employee</h1>
 
-                <br /><br />
+                        <p>
+                            Update employee information below
+                        </p>
 
-                <input
-                    type="text"
-                    name="department"
-                    value={employee.department}
-                    onChange={handleChange}
-                />
+                    </div>
 
-                <br /><br />
+                </div>
 
-                <input
-                    type="number"
-                    name="salary"
-                    value={employee.salary}
-                    onChange={handleChange}
-                />
 
-                <br /><br />
+                {/* Form */}
 
-                <button type="submit">
-                    Update Employee
-                </button>
+                <form
+                    className="employee-form"
+                    onSubmit={handleSubmit}
+                >
 
-            </form>
+                    {/* Name */}
+
+                    <div className="form-group">
+
+                        <label>Employee Name</label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter employee name"
+                            value={employee.name}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Email */}
+
+                    <div className="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter email address"
+                            value={employee.email}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Department */}
+
+                    <div className="form-group">
+
+                        <label>Department</label>
+
+                        <input
+                            type="text"
+                            name="department"
+                            placeholder="Enter department"
+                            value={employee.department}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Salary */}
+
+                    <div className="form-group">
+
+                        <label>Salary</label>
+
+                        <input
+                            type="number"
+                            name="salary"
+                            placeholder="Enter salary"
+                            value={employee.salary}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Buttons */}
+
+                    <div className="form-buttons">
+
+                        <button
+                            type="button"
+                            className="cancel-btn"
+                            onClick={() => navigate("/employees")}
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            className="update-btn"
+                        >
+                            Update Employee
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
     );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getEmployees, deleteEmployee } from "../services/employeeService";
 import { useNavigate } from "react-router-dom";
+import "./EmployeeList.css";
 
 function EmployeeList() {
 
@@ -48,7 +49,6 @@ function EmployeeList() {
 
             await deleteEmployee(id);
 
-            // Remove deleted employee from the list
             setEmployees((prevEmployees) =>
                 prevEmployees.filter((emp) => emp.id !== id)
             );
@@ -64,93 +64,156 @@ function EmployeeList() {
     };
 
     return (
-        <div style={{ padding: "20px" }}>
+        <div className="employee-page">
 
-            <h2>Employee Management</h2>
+            {/* Header */}
+            <div className="employee-header">
 
-            {/* Add Employee Button */}
-            <button onClick={() => navigate("/add-employee")}>
-                Add Employee
-            </button>
+                <div>
+                    <h1>Employee Management</h1>
+                    <p>Manage your employees and their information</p>
+                </div>
 
-            &nbsp;&nbsp;
+                <button
+                    className="logout-btn"
+                    onClick={logout}
+                >
+                    Logout
+                </button>
 
-            {/* Logout Button */}
-            <button onClick={logout}>
-                Logout
-            </button>
+            </div>
 
-            <br />
-            <br />
 
-            <table border="1" cellPadding="10">
+            {/* Dashboard Card */}
+            <div className="employee-card">
 
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Department</th>
-                        <th>Salary</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
+                {/* Card Header */}
+                <div className="card-header">
 
-                <tbody>
+                    <div>
+                        <h2>Employees</h2>
+                        <span className="employee-count">
+                            {employees.length} employee
+                            {employees.length !== 1 ? "s" : ""}
+                        </span>
+                    </div>
 
-                    {employees.length === 0 ? (
+                    <button
+                        className="add-btn"
+                        onClick={() => navigate("/add-employee")}
+                    >
+                        + Add Employee
+                    </button>
 
-                        <tr>
-                            <td colSpan="6">
-                                No employees found
-                            </td>
-                        </tr>
+                </div>
 
-                    ) : (
 
-                        employees.map((emp) => (
+                {/* Employee Table */}
+                <div className="table-container">
 
-                            <tr key={emp.id}>
+                    <table className="employee-table">
 
-                                <td>{emp.id}</td>
-
-                                <td>{emp.name}</td>
-
-                                <td>{emp.email}</td>
-
-                                <td>{emp.department}</td>
-
-                                <td>{emp.salary}</td>
-
-                                <td>
-
-                                    {/* Edit Button */}
-                                    <button
-                                        onClick={() => handleEdit(emp.id)}
-                                    >
-                                        Edit
-                                    </button>
-
-                                    &nbsp;&nbsp;
-
-                                    {/* Delete Button */}
-                                    <button
-                                        onClick={() => handleDelete(emp.id)}
-                                    >
-                                        Delete
-                                    </button>
-
-                                </td>
-
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Salary</th>
+                                <th>Actions</th>
                             </tr>
+                        </thead>
 
-                        ))
+                        <tbody>
 
-                    )}
+                            {employees.length === 0 ? (
 
-                </tbody>
+                                <tr>
+                                    <td
+                                        colSpan="6"
+                                        className="no-employees"
+                                    >
+                                        No employees found
+                                    </td>
+                                </tr>
 
-            </table>
+                            ) : (
+
+                                employees.map((emp) => (
+
+                                    <tr key={emp.id}>
+
+                                        <td>
+                                            <span className="employee-id">
+                                                #{emp.id}
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <div className="employee-name">
+                                                <div className="avatar">
+                                                    {emp.name
+                                                        ? emp.name.charAt(0).toUpperCase()
+                                                        : "?"}
+                                                </div>
+
+                                                <span>{emp.name}</span>
+                                            </div>
+                                        </td>
+
+                                        <td>{emp.email}</td>
+
+                                        <td>
+                                            <span className="department">
+                                                {emp.department}
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <span className="salary">
+                                                ₹{emp.salary}
+                                            </span>
+                                        </td>
+
+                                        <td>
+
+                                            <div className="action-buttons">
+
+                                                <button
+                                                    className="edit-btn"
+                                                    onClick={() =>
+                                                        handleEdit(emp.id)
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+
+                                                <button
+                                                    className="delete-btn"
+                                                    onClick={() =>
+                                                        handleDelete(emp.id)
+                                                    }
+                                                >
+                                                    Delete
+                                                </button>
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+
+                                ))
+
+                            )}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
 
         </div>
     );

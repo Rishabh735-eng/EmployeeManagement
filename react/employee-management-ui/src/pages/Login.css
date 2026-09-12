@@ -1,18 +1,138 @@
+/* Full Login Page */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, purple, #764ba2);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Login Card */
+
 .login-container {
-    width: 350px;
-    margin: 100px auto;
-    padding: 20px;
+    width: 380px;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Header */
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: purple;
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+.login-header h2 {
+    margin: 0;
+    color: #333333;
+    font-size: 26px;
+}
+
+.login-header p {
+    margin-top: 8px;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* Form */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 7px;
+    color: #444;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-form input {
+    box-sizing: border-box;
+
+    width: 100%;
+    padding: 13px 14px;
+
+    margin-bottom: 20px;
+
     border: 1px solid #ddd;
     border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
 }
 
-.login-container input {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
+.login-form input:focus {
+    border-color: lightblue;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
-.login-container button {
+.login-form input::placeholder {
+    color: #aaa;
+}
+
+
+/* Login Button */
+
+.login-form button {
     width: 100%;
-    padding: 10px;
+    padding: 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: purple;
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.login-form button:hover {
+    background: red;
+    transform: translateY(-1px);
+}
+
+
+/* Footer */
+
+.login-footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.login-footer p {
+    margin: 0;
+    color: #999;
+    font-size: 12px;
 }

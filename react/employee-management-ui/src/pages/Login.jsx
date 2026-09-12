@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/authService";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
 
@@ -32,31 +33,48 @@ function Login() {
     };
 
     return (
-        <div style={{ padding: "50px" }}>
+        <div className="login-page">
 
-            <h2>Employee Management Login</h2>
+            <div className="login-container">
 
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
+                <div className="login-header">
+                    <div className="login-icon">👤</div>
 
-            <br /><br />
+                    <h2>Employee Management</h2>
+                    <p>Sign in to your account</p>
+                </div>
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                <div className="login-form">
 
-            <br /><br />
+                    <label>Username</label>
 
-            <button onClick={handleLogin}>
-                Login
-            </button>
+                    <input
+                        type="text"
+                        placeholder="Enter your username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+
+                    <button onClick={handleLogin}>
+                        Login
+                    </button>
+
+                </div>
+
+                <div className="login-footer">
+                    <p>Employee Management System</p>
+                </div>
+
+            </div>
 
         </div>
     );

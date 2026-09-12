@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addEmployee } from "../services/employeeService";
+import "./AddEmployee.css";
 
 function AddEmployee() {
 
@@ -42,61 +43,121 @@ function AddEmployee() {
     };
 
     return (
-        <div style={{ padding: "20px" }}>
+        <div className="add-employee-page">
 
-            <h2>Add Employee</h2>
+            <div className="add-employee-card">
 
-            <form onSubmit={handleSubmit}>
+                {/* Header */}
+                <div className="add-employee-header">
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={employee.name}
-                    onChange={handleChange}
-                    required
-                />
+                    <div>
+                        <h1>Add Employee</h1>
 
-                <br /><br />
+                        <p>
+                            Enter employee details below
+                        </p>
+                    </div>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={employee.email}
-                    onChange={handleChange}
-                    required
-                />
+                </div>
 
-                <br /><br />
 
-                <input
-                    type="text"
-                    name="department"
-                    placeholder="Department"
-                    value={employee.department}
-                    onChange={handleChange}
-                    required
-                />
+                {/* Form */}
+                <form
+                    className="employee-form"
+                    onSubmit={handleSubmit}
+                >
 
-                <br /><br />
+                    {/* Name */}
+                    <div className="form-group">
 
-                <input
-                    type="number"
-                    name="salary"
-                    placeholder="Salary"
-                    value={employee.salary}
-                    onChange={handleChange}
-                    required
-                />
+                        <label>Employee Name</label>
 
-                <br /><br />
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter employee name"
+                            value={employee.name}
+                            onChange={handleChange}
+                            required
+                        />
 
-                <button type="submit">
-                    Save Employee
-                </button>
+                    </div>
 
-            </form>
+
+                    {/* Email */}
+                    <div className="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter email address"
+                            value={employee.email}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Department */}
+                    <div className="form-group">
+
+                        <label>Department</label>
+
+                        <input
+                            type="text"
+                            name="department"
+                            placeholder="Enter department"
+                            value={employee.department}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Salary */}
+                    <div className="form-group">
+
+                        <label>Salary</label>
+
+                        <input
+                            type="number"
+                            name="salary"
+                            placeholder="Enter salary"
+                            value={employee.salary}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    {/* Buttons */}
+                    <div className="form-buttons">
+
+                        <button
+                            type="button"
+                            className="cancel-btn"
+                            onClick={() => navigate("/employees")}
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            className="save-btn"
+                        >
+                            Save Employee
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
     );
