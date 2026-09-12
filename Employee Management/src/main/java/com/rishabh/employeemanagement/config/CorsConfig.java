@@ -21,7 +21,9 @@ public class CorsConfig {
         configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:5173",
-                        "https://employee-management-omega-umber.vercel.app"
+                        "http://localhost:5174",
+                        "https://employee-management-omega-umber.vercel.app",
+                        "https://employee-management-ln2hyqzzo-rishabh-tech.vercel.app"
                 )
         );
 

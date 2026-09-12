@@ -30,18 +30,15 @@ public class SecurityConfig {
                 .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
 
-                        // Allow CORS preflight requests
                         .requestMatchers(
                                 HttpMethod.OPTIONS,
                                 "/**"
                         ).permitAll()
 
-                        // Login does not require JWT
                         .requestMatchers(
                                 "/auth/login"
                         ).permitAll()
 
-                        // Everything else requires JWT
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
